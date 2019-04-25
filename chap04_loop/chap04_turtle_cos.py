@@ -13,7 +13,7 @@ t.penup()
 
 #y축 그리기
 t.pendown()
-for y in range((int)(math.cos(math.radians(45)) * 100)): #cos 그래프는 45도에서 최댓값
+for y in range((int)(math.cos(math.radians(0)) * 100)): #cos 그래프는 0도에서 최댓값
     t.goto(0, y)
 t.penup()
 
