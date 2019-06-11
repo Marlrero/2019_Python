@@ -1,0 +1,20 @@
+from tkinter import *
+from math import *
+
+def calculate(event):
+    label.configure(text="결과: " + str(eval(entry.get())))
+    # label의 텍스트를 바꾸거나 폰트를 바꾸려면 configure
+
+window = Tk()
+Label(window, text="파이썬 수식 입력 >> ").pack()
+
+entry = Entry(window)
+entry.bind("<Return>", calculate)
+# Entry 위젯에서 엔터키를 치면<Return> calculate로 바인딩하라
+
+entry.pack()
+
+label = Label(window, text="결과: ")
+label.pack()
+
+window.mainloop()
