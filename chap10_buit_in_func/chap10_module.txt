@@ -1,0 +1,167 @@
+# Shallow Copy의 사례
+>>> colors = ['red', 'blue', 'green']
+>>> clone = colors
+>>> clone[0] = 'white'
+>>> print(colors)
+['white', 'blue', 'green']
+>>> print(clone)
+['white', 'blue', 'green']
+
+
+# Deep Copy
+>>> import copy
+>>> colors = ['red', 'blue', 'green']
+>>> clone = copy.deepcopy(colors)
+>>> clone[0] = 'white'
+>>> print(colors)
+['red', 'blue', 'green']
+>>> print(clone)
+['white', 'blue', 'green']
+
+
+# keyword 알아보기
+>>> import keyword
+>>> name = input('변수 이름 입력 >> ')
+변수 이름 입력 >> for
+>>> if keyword.iskeyword(name):
+        print(name, "은 예약어입니다.")
+        print("아래는 전체 키워드 리스트를 보여줍니다.")
+        print(keyword.kwlist)
+    else:
+	    print(name, "은 사용할 수 있는 변수이름입니다.")
+
+for 은 예약어입니다.
+아래는 전체 키워드 리스트를 보여줍니다.
+['False', 'None', 'True', 'and', 'as', 'assert', 'async',
+'await', 'break', 'class', 'continue', 'def', 'del', 'elif',
+'else', 'except', 'finally', 'for', 'from', 'global', 'if',
+'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or',
+'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+
+
+# random 모듈
+# randint 함수는 [a, b] 구간에서 난수가 발생됨
+>>> import random
+>>> print(random.randint(1, 6))
+1
+>>> print(random.randint(1, 6))
+5
+
+# random 함수는 [0, 1) 구간에서 실수 난수가 발생됨
+# 더 큰 수를 원한다면 곱하면 됨
+>>> print(random.random() * 100)
+42.15266340794662
+
+# choice 함수는 시퀀스 인자에 대해 항목을 랜덤하게 반환됨
+>>> myList = ['red', 'yellow', 'blue']
+>>> random.choice(myList)
+'red'
+
+# shuffle 함수는 시퀀스 항목을 랜덤하게 섞음
+>>> myList = [ [x] for x in range(10) ]
+>>> myList
+[[0], [1], [2], [3], [4], [5], [6], [7], [8], [9]]
+>>> random.shuffle(myList)
+>>> myList
+[[9], [7], [3], [4], [5], [2], [8], [0], [6], [1]]
+
+# randrange(start, stop[, step]) 함수는 range(start, stop, step) 구간으로부터 랜덤 반환
+>>> for i in range(3):
+	print(random.randrange(0, 101, 3))
+
+54
+75
+66
+
+
+# os 모듈은 파이썬이 실행되는 OS에 관계없이 OS의 기본적인 기능들을 다룰 수 있음
+# system 함수는 OS 상에서 명령어를 실행하며 성공하면 0 반환
+>>> import os
+>>> os.system('calc')
+0
+
+>>> os.getcwd()
+'C:\\Users\\Marlrero\\AppData\\Local\\Programs\\Python\\Python37'
+>>> os.chdir('D:\\')
+>>> os.getcwd()
+'D:\\'
+
+>>> os.listdir(".")
+['._.Trashes', 'LOST.DIR', '.Trashes', '.Spotlight-V100', 'WPSystem',
+'System Volume Information', '!$oBLne', '!!koIXk', 'NPKI', '바이두',
+'Personal', '@$BCk', 'Memo.txt', '인증툴', '@!tyTzk', 'BOOTEX.LOG', '
+family', 'notice_windows', 'VCard', '!!pgd', '.TemporaryItems',
+'._.TemporaryItems', '!@Xem', '대학교', 'rufus-3.1.exe', 'XVSRD-TN5.6',
+'3DP_Net_v1703.exe', 'Server', '3DP_Chip_Lite_v1809.exe', 'PROWinx64.exe',
+'DisableTCP-IPv6ChecksumOffload.zip', 'DisableTCP-IPv6ChecksumOffload',
+'amd-catalyst-14.4-32bit-win8.1-win8-win7-whql-aug.exe',
+'unlocker_v1.9.0_portable_ver.zip', 'unlocker_v1.9.0_portable_ver',
+'동영상 강의_난 정말 c를 공부한적이 없다구요.zip',
+'2019-1 Hacking-python, C++', 'document', 'Software']
+
+>>> os.mkdir("myfiles")
+
+
+# sys 모듈은 파이썬 인터프리터에 대한 다양한 정보 제공
+>>> import sys
+>>> sys.prefix
+'C:\\Users\\Marlrero\\AppData\\Local\\Programs\\Python\\Python37'
+>>> sys.executable
+'C:\\Users\\Marlrero\\AppData\\Local\\Programs\\Python\\Python37\\pythonw.exe'
+
+>>> sys.exit() # IDLE(인터프리터)에서는 작동하지 않지만, 파일 실행때는 종료시킴
+
+>>> sys.modules # 모듈 보기 -> 엄청나게 많이 나옴
+
+>>> sys.path
+['', 'C:\\Users\\Marlrero\\AppData\\Local\\Programs\\Python\\Python37\\Lib\\idlelib',
+'C:\\Users\\Marlrero\\AppData\\Local\\Programs\\Python\\Python37\\python37.zip',
+'C:\\Users\\Marlrero\\AppData\\Local\\Programs\\Python\\Python37\\DLLs',
+'C:\\Users\\Marlrero\\AppData\\Local\\Programs\\Python\\Python37\\lib',
+'C:\\Users\\Marlrero\\AppData\\Local\\Programs\\Python\\Python37',
+'C:\\Users\\Marlrero\\AppData\\Local\\Programs\\Python\\Python37\\lib\\site-packages']
+
+>>> sys.version
+'3.7.3 (v3.7.3:ef4ec6ed12, Mar 25 2019, 22:22:05) [MSC v.1916 64 bit (AMD64)]'
+
+
+# time 모듈은 시간을 얻어와 다양한 형식으로 표시함
+>>> import time
+>>> time.time()
+1560329668.2125363 # 1970.1.1 00:00 ~ 지금까지 흘러온 초단위 절대시간
+
+'''
+start = time.time()
+.(실행할 코드).
+end = time.time()
+print(end - start) # 걸린 시간
+'''
+
+>>> time.asctime()
+'Wed Jun 12 17:56:05 2019'
+
+>>> t = ( 2019, 6, 12, 17, 56, 17, 5, 0, 0) # 연도, 월, 일, 시간, 분, 초, 요일, 0, 0
+>>> time.asctime(t) # 특정 날짜 출력
+'Sat Jun 12 17:56:17 2019'
+
+>>> print(time.localtime())
+time.struct_time(tm_year=2019, tm_mon=6, tm_mday=12, tm_hour=17, tm_min=57, tm_sec=33, tm_wday=2, tm_yday=163, tm_isdst=0)
+
+>>> localt = time.localtime()
+>>> localt[0]
+2019
+>>> localt[1]
+6
+
+# time.sleep(1) # 1초 동안 현재 동작중인 프로세스 정지
+
+>>> import calendar
+>>> cal = calendar.month(2016, 8)
+>>> print(cal)
+    August 2016
+Mo Tu We Th Fr Sa Su
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29 30 31
