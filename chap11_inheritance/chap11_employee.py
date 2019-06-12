@@ -4,7 +4,7 @@ class Employee:
         self.salary = salary
 
     def getSalary(self):
-        return salary
+        return self.salary
 
 class Manager(Employee):
     def __init__(self, name, salary, bonus):
@@ -14,7 +14,7 @@ class Manager(Employee):
     # Override
     def getSalary(self):
         salary = super().getSalary()
-        return salary + self.bonus
+        return self.salary + self.bonus
 
     # Override
     def __repr__(self):
